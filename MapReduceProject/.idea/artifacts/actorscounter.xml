@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="actorscounter">
+    <output-path>$PROJECT_DIR$/out/artifacts/actorscounter</output-path>
+    <root id="archive" name="actorscounter.jar">
+      <element id="module-output" name="MapReduce" />
+    </root>
+  </artifact>
+</component>

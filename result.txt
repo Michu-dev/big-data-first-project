@@ -1,0 +1,63 @@
++--------------+---------------+----------------+
+|    genre     | films_number  | actors_number  |
++--------------+---------------+----------------+
+| Action       | 264838        | 1051584        |
+| Adult        | 180134        | 695730         |
+| Adventure    | 235926        | 893427         |
+| Animation    | 315123        | 852913         |
+| Biography    | 73533         | 197642         |
+| Comedy       | 1320802       | 5099409        |
+| Crime        | 269325        | 1081669        |
+| Documentary  | 605033        | 1074505        |
+| Drama        | 1700416       | 6816843        |
+| Family       | 433601        | 1521989        |
+| Fantasy      | 130896        | 461243         |
+| Film-Noir    | 782           | 3195           |
+| Game-Show    | 205453        | 789617         |
+| History      | 86292         | 260972         |
+| Horror       | 113003        | 377820         |
+| Music        | 291182        | 1110922        |
+| Musical      | 47935         | 169072         |
+| Mystery      | 127091        | 496321         |
+| News         | 402184        | 1049173        |
+| Reality-TV   | 320456        | 884279         |
+| Romance      | 578524        | 2474997        |
+| Sci-Fi       | 84822         | 297578         |
+| Short        | 844541        | 2029148        |
+| Sport        | 134006        | 485895         |
+| Talk-Show    | 589091        | 2028957        |
+| Thriller     | 111417        | 419525         |
+| War          | 25149         | 89752          |
+| Western      | 26487         | 110046         |
++--------------+---------------+----------------+
+
+
+JSON:
+{"genre":"Action","films_number":264838,"actors_number":1051584}
+{"genre":"Adult","films_number":180134,"actors_number":695730}
+{"genre":"Adventure","films_number":235926,"actors_number":893427}
+{"genre":"Animation","films_number":315123,"actors_number":852913}
+{"genre":"Biography","films_number":73533,"actors_number":197642}
+{"genre":"Comedy","films_number":1320802,"actors_number":5099409}
+{"genre":"Crime","films_number":269325,"actors_number":1081669}
+{"genre":"Documentary","films_number":605033,"actors_number":1074505}
+{"genre":"Drama","films_number":1700416,"actors_number":6816843}
+{"genre":"Family","films_number":433601,"actors_number":1521989}
+{"genre":"Fantasy","films_number":130896,"actors_number":461243}
+{"genre":"Film-Noir","films_number":782,"actors_number":3195}
+{"genre":"Game-Show","films_number":205453,"actors_number":789617}
+{"genre":"History","films_number":86292,"actors_number":260972}
+{"genre":"Horror","films_number":113003,"actors_number":377820}
+{"genre":"Music","films_number":291182,"actors_number":1110922}
+{"genre":"Musical","films_number":47935,"actors_number":169072}
+{"genre":"Mystery","films_number":127091,"actors_number":496321}
+{"genre":"News","films_number":402184,"actors_number":1049173}
+{"genre":"Reality-TV","films_number":320456,"actors_number":884279}
+{"genre":"Romance","films_number":578524,"actors_number":2474997}
+{"genre":"Sci-Fi","films_number":84822,"actors_number":297578}
+{"genre":"Short","films_number":844541,"actors_number":2029148}
+{"genre":"Sport","films_number":134006,"actors_number":485895}
+{"genre":"Talk-Show","films_number":589091,"actors_number":2028957}
+{"genre":"Thriller","films_number":111417,"actors_number":419525}
+{"genre":"War","films_number":25149,"actors_number":89752}
+{"genre":"Western","films_number":26487,"actors_number":110046}

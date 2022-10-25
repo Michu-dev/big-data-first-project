@@ -1,0 +1,22 @@
+CLUSTER_NAME={cluster_name}
+BUCKET_NAME={your_bucket_name}
+PROJECT_ID={your_project_id}
+REGION={region}
+ZONE=${region}-{zone_letter_a_b_or_c}
+gcloud beta dataproc clusters create ${CLUSTER_NAME} \
+--enable-component-gateway --bucket ${BUCKET_NAME} \
+--region ${REGION} --subnet default --zone ${ZONE} \
+--master-machine-type n1-standard-2 --master-boot-disk-size 50 \
+--num-workers 2 --worker-machine-type n1-standard-2 --worker-boot-disk-size 50 \
+--image-version 2.0-debian10 --optional-components ZEPPELIN \
+--project ${PROJECT_ID} --max-age=3h
+
+
+-- Alternatywa do zapisywania JSON
+INSERT OVERWRITE DIRECTORY '/user/michalciesielski2000/output6' ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.JsonSerDe'
+ SELECT genre, COUNT(*) AS films_number, SUM(COALESCE(number_of_actors, 0)) AS actors_number FROM splitted_title_basics s
+ LEFT JOIN counted_actors_orc c ON s.film_id=c.film_id GROUP BY genre ORDER BY genre;
+
+
+sudo apt-get install dos2unix
+dos2unix file.sh
