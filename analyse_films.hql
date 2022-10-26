@@ -52,7 +52,7 @@ INSERT OVERWRITE TABLE counted_actors_orc
  SELECT * FROM counted_actors_ext;
 
 CREATE OR REPLACE VIEW splitted_title_basics AS
- SELECT * FROM title_basics_orc LATERAL VIEW EXPLODE(SPLIT(genres, ',')) genres AS genre;
+ SELECT * FROM title_basics_orc LATERAL VIEW OUTER EXPLODE(SPLIT(genres, ',')) genres AS genre;
 
 CREATE EXTERNAL TABLE IF NOT EXISTS result_table (
  genre STRING,
@@ -65,7 +65,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS result_table (
 
 INSERT OVERWRITE TABLE result_table
  SELECT genre, COUNT(*) AS films_number, SUM(COALESCE(number_of_actors, 0)) AS actors_number FROM splitted_title_basics s
- LEFT JOIN counted_actors_orc c ON s.film_id=c.film_id GROUP BY genre ORDER BY genre;
+ LEFT JOIN counted_actors_orc c ON s.film_id=c.film_id WHERE s.title_type='movie' GROUP BY genre ORDER BY actors_number DESC LIMIT 3;
  
 
 
