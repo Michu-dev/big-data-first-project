@@ -15,7 +15,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS title_basics_ext (
  ROW FORMAT DELIMITED
  FIELDS TERMINATED BY '\t'
  STORED AS TEXTFILE
- location '/user/michalciesielski2000/input/datasource4';
+ location '${input_dir4}';
 
 CREATE TABLE IF NOT EXISTS title_basics_orc (
  film_id STRING,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS title_basics_orc (
  STORED AS ORC;
 
 INSERT OVERWRITE TABLE title_basics_orc 
- SELECT * FROM title_basics_ext WHERE film_id != 'tconst';
+ SELECT * FROM title_basics_ext WHERE film_id != 'tconst' AND title_type='movie';
 
 CREATE EXTERNAL TABLE IF NOT EXISTS counted_actors_ext (
  film_id STRING,
@@ -40,7 +40,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS counted_actors_ext (
  ROW FORMAT DELIMITED
  FIELDS TERMINATED BY '\t'
  STORED AS TEXTFILE
- location '/user/michalciesielski2000/output_mr3/result';
+ location '${input_dir3}';
 
 CREATE TABLE IF NOT EXISTS counted_actors_orc (
  film_id STRING,
@@ -52,7 +52,7 @@ INSERT OVERWRITE TABLE counted_actors_orc
  SELECT * FROM counted_actors_ext;
 
 CREATE OR REPLACE VIEW splitted_title_basics AS
- SELECT * FROM title_basics_orc LATERAL VIEW OUTER EXPLODE(SPLIT(genres, ',')) genres AS genre;
+ SELECT * FROM title_basics_orc LATERAL VIEW OUTER EXPLODE(SPLIT(genres, ',')) genres1 AS genre;
 
 CREATE EXTERNAL TABLE IF NOT EXISTS result_table (
  genre STRING,
@@ -61,11 +61,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS result_table (
  ROW FORMAT SERDE
  'org.apache.hadoop.hive.serde2.JsonSerDe'
  STORED AS TEXTFILE
- location '/user/michalciesielski2000/output6';
+ location '${output_dir6}';
 
 INSERT OVERWRITE TABLE result_table
  SELECT genre, COUNT(*) AS films_number, SUM(COALESCE(number_of_actors, 0)) AS actors_number FROM splitted_title_basics s
- LEFT JOIN counted_actors_orc c ON s.film_id=c.film_id WHERE s.title_type='movie' GROUP BY genre ORDER BY actors_number DESC LIMIT 3;
+ LEFT JOIN counted_actors_orc c ON s.film_id=c.film_id GROUP BY genre ORDER BY actors_number DESC LIMIT 3;
  
 
 
